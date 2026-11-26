@@ -1,0 +1,1803 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1360</width>
+    <height>860</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>LUCO // MONITOR</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget { font-size: 12px; }
+QMainWindow, QWidget#centralwidget, QWidget#statusPanel, QWidget#canTab, QWidget#dxlTab, QStatusBar { background-color: #efefef; color: #1a1a1a; }
+QLabel, QCheckBox, QGroupBox { color: #1a1a1a; }
+QGroupBox { font-weight: bold; color: #1a1a1a; border: 1px solid #8a8a8a; margin-top: 9px; padding-top: 4px; }
+QGroupBox::title { subcontrol-origin: margin; left: 6px; padding: 0 3px; font-family: "DejaVu Sans Mono", monospace; }
+QLabel[role="video"] { background-color: #000000; color: #8c8c8c; border: 1px solid #4a4a4a; font-family: "DejaVu Sans Mono", monospace; font-size: 12px; }
+QLabel[role="caption"] { color: #505050; font-size: 11px; font-family: "DejaVu Sans Mono", monospace; }
+QLabel[role="field"] { background-color: #ffffff; color: #1a1a1a; border: 1px solid #8a8a8a; padding: 1px 6px; font-family: "DejaVu Sans Mono", monospace; font-weight: bold; }
+QLabel[role="stateBig"] { color: #1a1a1a; font-family: "DejaVu Sans Mono", monospace; font-size: 17px; font-weight: bold; }
+QLabel[state] { border: 1px solid #5a5a5a; padding: 3px 4px; font-family: "DejaVu Sans Mono", monospace; font-weight: bold; font-size: 11px; }
+QLabel[state="off"]   { background-color: #e4e4e4; color: #8c8c8c; border-color: #a8a8a8; }
+QLabel[state="ok"]    { background-color: #ffffff; color: #1a1a1a; }
+QLabel[state="warn"]  { background-color: #b8b8b8; color: #000000; border: 2px solid #1a1a1a; }
+QLabel[state="error"] { background-color: #1a1a1a; color: #ffffff; }
+QLabel[role="key"] { background-color: #f6f6f6; color: #1a1a1a; border: 1px solid #5a5a5a; font-family: "DejaVu Sans Mono", monospace; font-weight: bold; }
+QLabel[role="key"][active="true"] { background-color: #1e1e1e; color: #ffffff; }
+QTableWidget { background-color: #ffffff; color: #1a1a1a; font-family: "DejaVu Sans Mono", monospace; font-size: 11px; gridline-color: #b4b4b4; }
+QHeaderView::section { background-color: #e6e6e6; color: #1a1a1a; border: 1px solid #b4b4b4; font-family: "DejaVu Sans Mono", monospace; font-size: 11px; padding: 2px 4px; }
+QListWidget { background-color: #ffffff; color: #1a1a1a; font-family: "DejaVu Sans Mono", monospace; font-size: 11px; }
+QPlainTextEdit#eventLog { background-color: #0e0e0e; color: #c8c8c8; border: 1px solid #4a4a4a; font-family: "DejaVu Sans Mono", monospace; font-size: 11px; }
+QPushButton { background-color: #e6e6e6; color: #1a1a1a; border: 1px solid #8a8a8a; font-family: "DejaVu Sans Mono", monospace; font-weight: bold; padding: 5px 8px; }
+QPushButton#stopButton { background-color: #1a1a1a; color: #ffffff; border: 1px solid #000000; }
+QListWidget::item:selected { background-color: #3a3a3a; color: #ffffff; }
+QProgressBar { border: 1px solid #8a8a8a; background-color: #ffffff; color: #1a1a1a; text-align: center; font-family: "DejaVu Sans Mono", monospace; font-size: 11px; }
+QProgressBar::chunk { background-color: #7a7a7a; }
+QPushButton:hover { background-color: #d8d8d8; }
+QPushButton:pressed { background-color: #c4c4c4; }
+QPushButton#stopButton:hover { background-color: #333333; }
+QTabWidget::pane { border: 1px solid #8a8a8a; background-color: #efefef; }
+QTabBar::tab { background-color: #dcdcdc; color: #1a1a1a; border: 1px solid #8a8a8a; padding: 4px 10px; font-family: "DejaVu Sans Mono", monospace; }
+QTabBar::tab:selected { background-color: #efefef; font-weight: bold; border-bottom-color: #efefef; }
+QDoubleSpinBox { background-color: #ffffff; color: #1a1a1a; border: 1px solid #8a8a8a; padding: 2px 4px; }
+QCheckBox::indicator { width: 13px; height: 13px; border: 1px solid #5a5a5a; background-color: #ffffff; }
+QCheckBox::indicator:checked { background-color: #1a1a1a; }
+QToolTip { background-color: #ffffe1; color: #1a1a1a; border: 1px solid #5a5a5a; }</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="rootLayout" stretch="0,1,0">
+    <property name="spacing">
+     <number>6</number>
+    </property>
+    <property name="leftMargin">
+     <number>6</number>
+    </property>
+    <property name="topMargin">
+     <number>6</number>
+    </property>
+    <property name="rightMargin">
+     <number>6</number>
+    </property>
+    <property name="bottomMargin">
+     <number>6</number>
+    </property>
+    <item>
+     <widget class="QFrame" name="topBar">
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QHBoxLayout" name="topBarLayout">
+       <property name="spacing">
+        <number>6</number>
+       </property>
+       <property name="leftMargin">
+        <number>8</number>
+       </property>
+       <property name="topMargin">
+        <number>4</number>
+       </property>
+       <property name="rightMargin">
+        <number>8</number>
+       </property>
+       <property name="bottomMargin">
+        <number>4</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="appTitle">
+         <property name="text">
+          <string>LUCO // MONITOR</string>
+         </property>
+         <property name="role" stdset="0">
+          <string>stateBig</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="s0">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="runStateName">
+         <property name="text">
+          <string>MODE</string>
+         </property>
+         <property name="role" stdset="0">
+          <string>caption</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="runStatePill">
+         <property name="text">
+          <string>IDLE</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="state" stdset="0">
+          <string>off</string>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>90</width>
+           <height>0</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="driveSourceName">
+         <property name="text">
+          <string>DRIVE_SRC</string>
+         </property>
+         <property name="role" stdset="0">
+          <string>caption</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="driveSourceValue">
+         <property name="text">
+          <string>NONE</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="role" stdset="0">
+          <string>field</string>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>90</width>
+           <height>0</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="batteryName">
+         <property name="text">
+          <string>VBAT</string>
+         </property>
+         <property name="role" stdset="0">
+          <string>caption</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="batteryValue">
+         <property name="text">
+          <string>--.- V</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="role" stdset="0">
+          <string>field</string>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>0</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="estopName">
+         <property name="text">
+          <string>E-STOP</string>
+         </property>
+         <property name="role" stdset="0">
+          <string>caption</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="estopPill">
+         <property name="text">
+          <string>N/A</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="state" stdset="0">
+          <string>off</string>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>90</width>
+           <height>0</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="domainName">
+         <property name="text">
+          <string>DOMAIN</string>
+         </property>
+         <property name="role" stdset="0">
+          <string>caption</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="domainValue">
+         <property name="text">
+          <string>--</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="role" stdset="0">
+          <string>field</string>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>40</width>
+           <height>0</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="uptimeName">
+         <property name="text">
+          <string>UPTIME</string>
+         </property>
+         <property name="role" stdset="0">
+          <string>caption</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="uptimeValue">
+         <property name="text">
+          <string>00:00:00</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="role" stdset="0">
+          <string>field</string>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>0</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="middleLayout" stretch="1,0">
+      <property name="spacing">
+       <number>6</number>
+      </property>
+      <item>
+       <layout class="QGridLayout" name="viewGrid" rowstretch="3,2" columnstretch="1,1,1">
+        <property name="horizontalSpacing">
+         <number>6</number>
+        </property>
+        <property name="verticalSpacing">
+         <number>4</number>
+        </property>
+        <item row="0" column="0" colspan="3">
+         <widget class="QGroupBox" name="mainViewBox">
+          <property name="title">
+           <string>CAM_MAIN  /camera/image_raw</string>
+          </property>
+          <layout class="QVBoxLayout" name="mainViewBoxLayout">
+           <property name="leftMargin">
+            <number>4</number>
+           </property>
+           <property name="topMargin">
+            <number>4</number>
+           </property>
+           <property name="rightMargin">
+            <number>4</number>
+           </property>
+           <property name="bottomMargin">
+            <number>4</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="mainView">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>400</width>
+               <height>225</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>NO SIGNAL</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <property name="role" stdset="0">
+              <string>video</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QGroupBox" name="lineViewBox">
+          <property name="title">
+           <string>CAM_LINE  /line/image</string>
+          </property>
+          <layout class="QVBoxLayout" name="lineViewBoxLayout">
+           <property name="leftMargin">
+            <number>4</number>
+           </property>
+           <property name="topMargin">
+            <number>4</number>
+           </property>
+           <property name="rightMargin">
+            <number>4</number>
+           </property>
+           <property name="bottomMargin">
+            <number>4</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="lineView">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>180</width>
+               <height>120</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>NO SIGNAL</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <property name="role" stdset="0">
+              <string>video</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QGroupBox" name="mapViewBox">
+          <property name="title">
+           <string>MAP_3D  /map</string>
+          </property>
+          <layout class="QVBoxLayout" name="mapViewBoxLayout">
+           <property name="leftMargin">
+            <number>4</number>
+           </property>
+           <property name="topMargin">
+            <number>4</number>
+           </property>
+           <property name="rightMargin">
+            <number>4</number>
+           </property>
+           <property name="bottomMargin">
+            <number>4</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="mapView">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>180</width>
+               <height>120</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>NO SIGNAL</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <property name="role" stdset="0">
+              <string>video</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QGroupBox" name="armViewBox">
+          <property name="title">
+           <string>CAM_ARM  /arm/image</string>
+          </property>
+          <layout class="QVBoxLayout" name="armViewBoxLayout">
+           <property name="leftMargin">
+            <number>4</number>
+           </property>
+           <property name="topMargin">
+            <number>4</number>
+           </property>
+           <property name="rightMargin">
+            <number>4</number>
+           </property>
+           <property name="bottomMargin">
+            <number>4</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="armView">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>180</width>
+               <height>120</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>NO SIGNAL</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <property name="role" stdset="0">
+              <string>video</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QWidget" name="statusPanel">
+        <property name="minimumSize">
+         <size>
+          <width>360</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>380</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <layout class="QVBoxLayout" name="statusLayout">
+         <property name="spacing">
+          <number>4</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QGroupBox" name="missionBox">
+           <property name="title">
+            <string>MISSION</string>
+           </property>
+           <layout class="QGridLayout" name="missionLayout">
+            <property name="horizontalSpacing">
+             <number>6</number>
+            </property>
+            <property name="verticalSpacing">
+             <number>4</number>
+            </property>
+            <property name="leftMargin">
+             <number>6</number>
+            </property>
+            <property name="topMargin">
+             <number>6</number>
+            </property>
+            <property name="rightMargin">
+             <number>6</number>
+            </property>
+            <property name="bottomMargin">
+             <number>6</number>
+            </property>
+            <item row="0" column="0" colspan="4">
+             <widget class="QLabel" name="missionStateLabel">
+              <property name="text">
+               <string>S0  IDLE</string>
+              </property>
+              <property name="role" stdset="0">
+               <string>stateBig</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0" colspan="4">
+             <widget class="QLabel" name="missionDescLabel">
+              <property name="text">
+               <string>대기 중</string>
+              </property>
+              <property name="role" stdset="0">
+               <string>caption</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="tStateName">
+              <property name="text">
+               <string>t_state</string>
+              </property>
+              <property name="role" stdset="0">
+               <string>caption</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QLabel" name="missionTimeLabel">
+              <property name="text">
+               <string>0.0 s</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignVCenter</set>
+              </property>
+              <property name="role" stdset="0">
+               <string>field</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="2">
+             <widget class="QLabel" name="retryName">
+              <property name="text">
+               <string>retry</string>
+              </property>
+              <property name="role" stdset="0">
+               <string>caption</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="3">
+             <widget class="QLabel" name="missionRetryLabel">
+              <property name="text">
+               <string>0 / 3</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignVCenter</set>
+              </property>
+              <property name="role" stdset="0">
+               <string>field</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0" colspan="4">
+             <widget class="QProgressBar" name="missionProgress">
+              <property name="maximum">
+               <number>8</number>
+              </property>
+              <property name="value">
+               <number>0</number>
+              </property>
+              <property name="format">
+               <string>%v / %m</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0" colspan="4">
+             <widget class="QListWidget" name="missionStepList">
+              <property name="focusPolicy">
+               <enum>Qt::NoFocus</enum>
+              </property>
+              <property name="currentRow">
+               <number>0</number>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>100</height>
+               </size>
+              </property>
+              <item>
+               <property name="text">
+                <string>S0  IDLE          대기</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>S1  PRECHECK      시작 전 점검</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>S2  NAV_TO_ZONE   3D 자율주행</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>S3  LINE_APPROACH 라인 접근</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>S4  ARM_PREP      팔 준비</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>S5  REPOSITION    위치 보정</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>S6  GRASP         파지</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>S7  LIFT          들어 올리기</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>S8  DONE          완료</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="heartbeatBox">
+           <property name="title">
+            <string>HEARTBEAT</string>
+           </property>
+           <layout class="QGridLayout" name="heartbeatGrid">
+            <property name="horizontalSpacing">
+             <number>3</number>
+            </property>
+            <property name="verticalSpacing">
+             <number>3</number>
+            </property>
+            <property name="leftMargin">
+             <number>6</number>
+            </property>
+            <property name="topMargin">
+             <number>6</number>
+            </property>
+            <property name="rightMargin">
+             <number>6</number>
+            </property>
+            <property name="bottomMargin">
+             <number>6</number>
+            </property>
+            <item row="0" column="0">
+             <widget class="QLabel" name="hbBase">
+              <property name="text">
+               <string>BASE</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="state" stdset="0">
+               <string>off</string>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>22</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLabel" name="hbNav">
+              <property name="text">
+               <string>NAV3D</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="state" stdset="0">
+               <string>off</string>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>22</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QLabel" name="hbDrive">
+              <property name="text">
+               <string>DRIVE</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="state" stdset="0">
+               <string>off</string>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>22</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="hbVision">
+              <property name="text">
+               <string>VISION</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="state" stdset="0">
+               <string>off</string>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>22</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QLabel" name="hbArm">
+              <property name="text">
+               <string>ARM</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="state" stdset="0">
+               <string>off</string>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>22</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2">
+             <widget class="QLabel" name="hbPlanner">
+              <property name="text">
+               <string>PLANNER</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="state" stdset="0">
+               <string>off</string>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>22</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QTabWidget" name="detailTabs">
+           <property name="currentIndex">
+            <number>0</number>
+           </property>
+           <widget class="QWidget" name="canTab">
+            <attribute name="title">
+             <string>CAN0 · 500 kbit/s</string>
+            </attribute>
+            <layout class="QVBoxLayout" name="canLayout">
+             <property name="leftMargin">
+              <number>4</number>
+             </property>
+             <property name="topMargin">
+              <number>4</number>
+             </property>
+             <property name="rightMargin">
+              <number>4</number>
+             </property>
+             <property name="bottomMargin">
+              <number>4</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="canStatePill">
+               <property name="text">
+                <string>LINK DOWN</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="state" stdset="0">
+                <string>off</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTableWidget" name="canTable">
+               <property name="editTriggers">
+                <set>QAbstractItemView::NoEditTriggers</set>
+               </property>
+               <property name="selectionMode">
+                <enum>QAbstractItemView::NoSelection</enum>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="verticalScrollBarPolicy">
+                <enum>Qt::ScrollBarAlwaysOff</enum>
+               </property>
+               <property name="horizontalScrollBarPolicy">
+                <enum>Qt::ScrollBarAlwaysOff</enum>
+               </property>
+               <attribute name="verticalHeaderVisible">
+                <bool>false</bool>
+               </attribute>
+               <attribute name="horizontalHeaderStretchLastSection">
+                <bool>true</bool>
+               </attribute>
+               <attribute name="horizontalHeaderMinimumSectionSize">
+                <number>20</number>
+               </attribute>
+               <attribute name="verticalHeaderDefaultSectionSize">
+                <number>20</number>
+               </attribute>
+               <row/>
+               <row/>
+               <row/>
+               <column>
+                <property name="text">
+                 <string>NODE</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>ID</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>RX [Hz]</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>LAST [ms]</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>STAT</string>
+                </property>
+               </column>
+               <item row="0" column="0">
+                <property name="text">
+                 <string>VESC_L</string>
+                </property>
+               </item>
+               <item row="0" column="1">
+                <property name="text">
+                 <string>110/0x6E</string>
+                </property>
+               </item>
+               <item row="0" column="2">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="0" column="3">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="0" column="4">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="1" column="0">
+                <property name="text">
+                 <string>VESC_R</string>
+                </property>
+               </item>
+               <item row="1" column="1">
+                <property name="text">
+                 <string>13/0x0D</string>
+                </property>
+               </item>
+               <item row="1" column="2">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="1" column="3">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="1" column="4">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="2" column="0">
+                <property name="text">
+                 <string>BUS</string>
+                </property>
+               </item>
+               <item row="2" column="1">
+                <property name="text">
+                 <string>-</string>
+                </property>
+               </item>
+               <item row="2" column="2">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="2" column="3">
+                <property name="text">
+                 <string>-</string>
+                </property>
+               </item>
+               <item row="2" column="4">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="canBusStats">
+               <property name="text">
+                <string>state --   tx_err --   rx_err --   bus_off --</string>
+               </property>
+               <property name="role" stdset="0">
+                <string>caption</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="dxlTab">
+            <attribute name="title">
+             <string>DYNAMIXEL ×7</string>
+            </attribute>
+            <layout class="QVBoxLayout" name="dxlLayout">
+             <property name="leftMargin">
+              <number>4</number>
+             </property>
+             <property name="topMargin">
+              <number>4</number>
+             </property>
+             <property name="rightMargin">
+              <number>4</number>
+             </property>
+             <property name="bottomMargin">
+              <number>4</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="dxlSummaryPill">
+               <property name="text">
+                <string>0 / 7 RESPONDING</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="state" stdset="0">
+                <string>off</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTableWidget" name="dxlTable">
+               <property name="editTriggers">
+                <set>QAbstractItemView::NoEditTriggers</set>
+               </property>
+               <property name="selectionMode">
+                <enum>QAbstractItemView::NoSelection</enum>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="verticalScrollBarPolicy">
+                <enum>Qt::ScrollBarAlwaysOff</enum>
+               </property>
+               <property name="horizontalScrollBarPolicy">
+                <enum>Qt::ScrollBarAlwaysOff</enum>
+               </property>
+               <attribute name="verticalHeaderVisible">
+                <bool>false</bool>
+               </attribute>
+               <attribute name="horizontalHeaderStretchLastSection">
+                <bool>true</bool>
+               </attribute>
+               <attribute name="horizontalHeaderMinimumSectionSize">
+                <number>20</number>
+               </attribute>
+               <attribute name="verticalHeaderDefaultSectionSize">
+                <number>20</number>
+               </attribute>
+               <row/>
+               <row/>
+               <row/>
+               <row/>
+               <row/>
+               <row/>
+               <row/>
+               <column>
+                <property name="text">
+                 <string>J</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>ID</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>COMM</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>POS°</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>T°C</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>LD%</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>ERR</string>
+                </property>
+               </column>
+               <item row="0" column="0">
+                <property name="text">
+                 <string>J1</string>
+                </property>
+               </item>
+               <item row="0" column="1">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="0" column="2">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="0" column="3">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="0" column="4">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="0" column="5">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="0" column="6">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="1" column="0">
+                <property name="text">
+                 <string>J2</string>
+                </property>
+               </item>
+               <item row="1" column="1">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="1" column="2">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="1" column="3">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="1" column="4">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="1" column="5">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="1" column="6">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="2" column="0">
+                <property name="text">
+                 <string>J3</string>
+                </property>
+               </item>
+               <item row="2" column="1">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="2" column="2">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="2" column="3">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="2" column="4">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="2" column="5">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="2" column="6">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="3" column="0">
+                <property name="text">
+                 <string>J4</string>
+                </property>
+               </item>
+               <item row="3" column="1">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="3" column="2">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="3" column="3">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="3" column="4">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="3" column="5">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="3" column="6">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="4" column="0">
+                <property name="text">
+                 <string>J5</string>
+                </property>
+               </item>
+               <item row="4" column="1">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="4" column="2">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="4" column="3">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="4" column="4">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="4" column="5">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="4" column="6">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="5" column="0">
+                <property name="text">
+                 <string>J6</string>
+                </property>
+               </item>
+               <item row="5" column="1">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="5" column="2">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="5" column="3">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="5" column="4">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="5" column="5">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="5" column="6">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="6" column="0">
+                <property name="text">
+                 <string>J7</string>
+                </property>
+               </item>
+               <item row="6" column="1">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="6" column="2">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="6" column="3">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="6" column="4">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="6" column="5">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+               <item row="6" column="6">
+                <property name="text">
+                 <string>--</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="bottomLayout" stretch="0,0,1">
+      <property name="spacing">
+       <number>6</number>
+      </property>
+      <item>
+       <widget class="QGroupBox" name="controlBox">
+        <property name="title">
+         <string>CONTROL</string>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>170</height>
+         </size>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>170</width>
+          <height>0</height>
+         </size>
+        </property>
+        <layout class="QGridLayout" name="controlLayout">
+         <property name="horizontalSpacing">
+          <number>4</number>
+         </property>
+         <property name="verticalSpacing">
+          <number>4</number>
+         </property>
+         <property name="leftMargin">
+          <number>6</number>
+         </property>
+         <property name="topMargin">
+          <number>6</number>
+         </property>
+         <property name="rightMargin">
+          <number>6</number>
+         </property>
+         <property name="bottomMargin">
+          <number>6</number>
+         </property>
+         <item row="0" column="0">
+          <widget class="QPushButton" name="startButton">
+           <property name="text">
+            <string>START</string>
+           </property>
+           <property name="toolTip">
+            <string>미션 시작</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QPushButton" name="pauseButton">
+           <property name="text">
+            <string>PAUSE</string>
+           </property>
+           <property name="toolTip">
+            <string>미션 정지</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0" colspan="2">
+          <widget class="QPushButton" name="resetButton">
+           <property name="text">
+            <string>RESET</string>
+           </property>
+           <property name="toolTip">
+            <string>ERROR 해제</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0" colspan="2">
+          <widget class="QPushButton" name="stopButton">
+           <property name="text">
+            <string>STOP</string>
+           </property>
+           <property name="toolTip">
+            <string>즉시 정지 + 키보드 조종 끄기</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="teleopBox">
+        <property name="title">
+         <string>TELEOP (WASD) → /diff_drive_controller/cmd_vel</string>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>170</height>
+         </size>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>470</width>
+          <height>0</height>
+         </size>
+        </property>
+        <layout class="QHBoxLayout" name="teleopLayout">
+         <property name="spacing">
+          <number>12</number>
+         </property>
+         <property name="leftMargin">
+          <number>6</number>
+         </property>
+         <property name="topMargin">
+          <number>6</number>
+         </property>
+         <property name="rightMargin">
+          <number>6</number>
+         </property>
+         <property name="bottomMargin">
+          <number>6</number>
+         </property>
+         <item>
+          <layout class="QGridLayout" name="keyGrid">
+           <property name="horizontalSpacing">
+            <number>3</number>
+           </property>
+           <property name="verticalSpacing">
+            <number>3</number>
+           </property>
+           <item row="0" column="1">
+            <widget class="QLabel" name="keyW">
+             <property name="text">
+              <string>W</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <property name="role" stdset="0">
+              <string>key</string>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>36</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>36</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="active" stdset="0">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="keyA">
+             <property name="text">
+              <string>A</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <property name="role" stdset="0">
+              <string>key</string>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>36</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>36</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="active" stdset="0">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLabel" name="keyS">
+             <property name="text">
+              <string>S</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <property name="role" stdset="0">
+              <string>key</string>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>36</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>36</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="active" stdset="0">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLabel" name="keyD">
+             <property name="text">
+              <string>D</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <property name="role" stdset="0">
+              <string>key</string>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>36</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>36</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="active" stdset="0">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" colspan="3">
+            <widget class="QLabel" name="keySpace">
+             <property name="text">
+              <string>SPACE=STOP</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <property name="role" stdset="0">
+              <string>key</string>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>114</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>114</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="active" stdset="0">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QGridLayout" name="teleopRight">
+           <property name="horizontalSpacing">
+            <number>6</number>
+           </property>
+           <property name="verticalSpacing">
+            <number>4</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QCheckBox" name="teleopEnableCheck">
+             <property name="text">
+              <string>ENABLE</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="teleopStatePill">
+             <property name="text">
+              <string>OFF</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <property name="state" stdset="0">
+              <string>off</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="linearSpeedName">
+             <property name="text">
+              <string>v_max</string>
+             </property>
+             <property name="role" stdset="0">
+              <string>caption</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QDoubleSpinBox" name="linearSpeedSpin">
+             <property name="decimals">
+              <number>2</number>
+             </property>
+             <property name="minimum">
+              <double>0.05</double>
+             </property>
+             <property name="maximum">
+              <double>1.0</double>
+             </property>
+             <property name="singleStep">
+              <double>0.05</double>
+             </property>
+             <property name="value">
+              <double>0.3</double>
+             </property>
+             <property name="suffix">
+              <string> m/s</string>
+             </property>
+             <property name="buttonSymbols">
+              <enum>QAbstractSpinBox::NoButtons</enum>
+             </property>
+             <property name="toolTip">
+              <string>클릭 후 숫자 입력 또는 마우스 휠로 조절</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="angularSpeedName">
+             <property name="text">
+              <string>w_max</string>
+             </property>
+             <property name="role" stdset="0">
+              <string>caption</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QDoubleSpinBox" name="angularSpeedSpin">
+             <property name="decimals">
+              <number>2</number>
+             </property>
+             <property name="minimum">
+              <double>0.1</double>
+             </property>
+             <property name="maximum">
+              <double>1.2</double>
+             </property>
+             <property name="singleStep">
+              <double>0.1</double>
+             </property>
+             <property name="value">
+              <double>0.8</double>
+             </property>
+             <property name="suffix">
+              <string> rad/s</string>
+             </property>
+             <property name="buttonSymbols">
+              <enum>QAbstractSpinBox::NoButtons</enum>
+             </property>
+             <property name="toolTip">
+              <string>클릭 후 숫자 입력 또는 마우스 휠로 조절</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" colspan="2">
+            <widget class="QLabel" name="teleopCmdLabel">
+             <property name="text">
+              <string>cmd: --</string>
+             </property>
+             <property name="role" stdset="0">
+              <string>caption</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="logBox">
+        <property name="title">
+         <string>EVENT LOG</string>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>170</height>
+         </size>
+        </property>
+        <layout class="QVBoxLayout" name="logLayout">
+         <property name="leftMargin">
+          <number>4</number>
+         </property>
+         <property name="topMargin">
+          <number>4</number>
+         </property>
+         <property name="rightMargin">
+          <number>4</number>
+         </property>
+         <property name="bottomMargin">
+          <number>4</number>
+         </property>
+         <item>
+          <widget class="QPlainTextEdit" name="eventLog">
+           <property name="focusPolicy">
+            <enum>Qt::NoFocus</enum>
+           </property>
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+           <property name="maximumBlockCount">
+            <number>1000</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
